@@ -6,30 +6,30 @@ def encoder(string, key, number):
         string = string.ljust(lenstr + (lenkey - lenstr % lenkey) % lenkey, "\0")
         lenstr = len(string)
     count = int(lenstr / lenkey)
-    p1 = 0
-    p2 = lenkey
-    string_2 = ''
+    a = 0
+    b = lenkey
+    string_two = ''
     if number == 2:
         for i in range(count):
             c = 0
-            helpstr_1 = list(string[p1:p2])
-            helpstr_2 = list(string[p1:p2])
+            helper = list(string[a:b])
+            helper_two = list(string[a:b])
             for j in key:
-                helpstr_1[j] = helpstr_2[c]
+                helper[j] = helper_two[c]
                 c+=1
-            p1 = p2
-            p2 = p2 + lenkey
-            string_2 += ''.join(helpstr_1)
-        while string_2[-1] == ' ':
-            string_2 = string_2[:-1]
+            a = b
+            b = b + lenkey
+            string_two += ''.join(helper)
+        while string_two[-1] == ' ':
+            string_two = string_two[:-1]
     else:
         for i in range(count):
-            helpstr = string[p1:p2]
+            helper = string[a:b]
             for j in key:
-                string_2 += str(helpstr[j])
-            p1 = p2
-            p2 = p2 + lenkey
-    return string_2
+                string_two += str(helper[j])
+            a = b
+            b = b + lenkey
+    return string_two
 
 
 def encoder_two(string, key, number):
@@ -44,34 +44,34 @@ def encoder_two(string, key, number):
         string = list(string.replace('  ',' ').split(' '))
     lenstr = len(string)
     count = int(lenstr / lenkey)
-    p1 = 0
-    p2 = lenkey
-    string_2 = []
-    string_3 = ''
+    a = 0
+    b = lenkey
+    string_two = []
+    string_three = ''
     print(string)
     if number == 2:
         for i in range(count):
             c = 0
-            helpstr_1 = list(string[p1:p2])
-            helpstr_2 = list(string[p1:p2])
+            helper = list(string[a:b])
+            helper_two = list(string[a:b])
             for j in key:
-                helpstr_1[j] = helpstr_2[c]
+                helper[j] = helper_two[c]
                 c += 1
-            p1 = p2
-            p2 = p2 + lenkey
-            string_2+=helpstr_1
-        string_3 += ' '.join(string_2)
-        while string_3[-1] == ' ':
-            string_3 = string_3[:-1]
+            a = b
+            b = b + lenkey
+            string_two+=helper
+        string_three += ' '.join(string_two)
+        while string_three[-1] == ' ':
+            string_three = string_three[:-1]
     else:
         for i in range(count):
-            helpstr = string[p1:p2]
+            helper = string[a:b]
             for j in key:
-                string_2.append(str(helpstr[j]))
-            p1 = p2
-            p2 = p2 + lenkey
-        string_3 = ' '.join(string_2)
-    return string_3
+                string_two.append(str(helper[j]))
+            a = b
+            b = b + lenkey
+        string_three = ' '.join(string_two)
+    return string_three
 
 
 def encoder_three(string, key, number, lenb_1):
@@ -83,43 +83,43 @@ def encoder_three(string, key, number, lenb_1):
     lenstr = len(string)
     block = ''
     temporary = lenb_1
-    string_2 = []
+    string_two = []
     for i in range(lenstr):
         if temporary == 0:
-            string_2.append(block)
+            string_two.append(block)
             block = ''
             temporary = lenb_1
         block += string[i]
         temporary -= 1
-    string_2.append(block)
-    lenstr = len(string_2)
+    string_two.append(block)
+    lenstr = len(string_two)
     count = int(lenstr / lenkey)
-    p1 = 0
-    p2 = lenkey
-    string_3 = ''
+    a = 0
+    b = lenkey
+    string_three = ''
     string_4 = []
     if number == 2:
         for i in range(count):
             c = 0
-            helpstr_1 = list(string_2[p1:p2])
-            helpstr_2 = list(string_2[p1:p2])
+            helper = list(string_two[a:b])
+            helper_two = list(string_two[a:b])
             for j in key:
-                helpstr_1[j] = helpstr_2[c]
+                helper[j] = helper_two[c]
                 c += 1
-            p1 = p2
-            p2 = p2 + lenkey
-            string_4+=helpstr_1
-        string_3 += ''.join(string_4)
-        while string_3[-1] == ' ':
-            string_3 = string_3[:-1]
+            a = b
+            b = b + lenkey
+            string_4+=helper
+        string_three += ''.join(string_4)
+        while string_three[-1] == ' ':
+            string_three = string_three[:-1]
     else:
         for i in range(count):
-            helpstr = string_2[p1:p2]
+            helper = string_two[a:b]
             for j in key:
-                string_3 += str(helpstr[j])
-            p1 = p2
-            p2 = p2 + lenkey
-    return string_3
+                string_three += str(helper[j])
+            a = b
+            b = b + lenkey
+    return string_three
 
 def check_key(key):
     if len(key) == 0:
@@ -131,8 +131,8 @@ def check_key(key):
         except ValueError:
             print('Данные неккоректны. Ключ = числа.')
             return False
-        maxc = max(key)
-        if len(set(key)) != maxc + 1:
+        maxkey = max(key)
+        if len(set(key)) != maxkey + 1:
             print('Данные неккоректны. Возможно вы ввели числа не по порядку или пропустили число.')
             return False
         return True
@@ -188,7 +188,7 @@ def len_checker(lenb_1):
     return True
 
 
-print('Расшифровка и зашифровка сообщений без смс и ррегистрации.')
+print('Расшифровка и зашифровка сообщений без смс и регистрации, бесплатно, офлайн.')
 while True:
     print('1) - зашифровать\n2) - расшифровать \n0) - выйти')
     num = input()
